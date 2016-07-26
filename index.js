@@ -24,7 +24,6 @@ var emscripten = {
 var addon = {
   version: function() { return '2.1.0' },
 
-  // makeKey() -> { registrarSK: '...', registrarVK: '...' }
   makeKey:
     function () {
       var result
@@ -41,7 +40,6 @@ var addon = {
       return result
     },
 
-  // registerServerResponse(userId, request, registrarSK) -> '...'
   registerServerResponse:
     function (userId, request, registrarSK) {
       var result = emscripten.registerServerResponse(userId, request, registrarSK);
@@ -50,16 +48,15 @@ var addon = {
       return result
     },
 
-  // createSurvey() -> { surveyId: '...', surveyVK: '...', surveySK: '...' }
   createSurvey:
     function () {
       var result
       var survey = anonize2._malloc(40)
 
       if (emscripten.createSurvey(survey)) {
-        result = { surveyId: anonize2.Pointer_stringify(anonize2.getValue(survey, "*")),
-                   surveyVK: anonize2.Pointer_stringify(anonize2.getValue(survey + 4, "*")),
-                   surveySK: anonize2.Pointer_stringify(anonize2.getValue(survey + 16, "*"))
+        result = { surveyId: anonize2.Pointer_stringify(anonize2.getValue(survey, '*')),
+                   surveyVK: anonize2.Pointer_stringify(anonize2.getValue(survey + 4, '*')),
+                   surveySK: anonize2.Pointer_stringify(anonize2.getValue(survey + 16, '*'))
                  }
       }
       anonize2._free(survey)
@@ -68,39 +65,44 @@ var addon = {
       return result
     },
 
-  // extendSurvey(surveyId: '...', surveyVK: '...', surveySK: '...', userId) -> '...'
   extendSurvey:
     function (surveyId, surveyVK, surveySK, userId) {
       var result
       var survey = anonize2._malloc(40)
+      var vid = anonize2._malloc(surveyId.length + 1)
+      var vavk = anonize2._malloc(surveyVK.length + 1)
+      var vask = anonize2._malloc(surveySK.length + 1)
       var user = anonize2._malloc(userId.length + 1)
 
-      anonize2.writeAsciiToMemory(surveyId, survey)
-      anonize2.writeAsciiToMemory(surveyVK, survey + 4)
-      anonize2.writeAsciiToMemory(surveySK, survey + 16)
+      anonize2.writeAsciiToMemory(surveyId, vid)
+      anonize2.setValue(survey, vid, '*')
+      anonize2.writeAsciiToMemory(surveyVK, vavk)
+      anonize2.setValue(survey + 4, vavk, '*')
+      anonize2.writeAsciiToMemory(surveySK, vask)
+      anonize2.setValue(survey + 16, vask, '*')
       anonize2.writeAsciiToMemory(userId, user)
 
       if (emscripten.extendSurvey(user, survey)) {
-        result = anonize2.Pointer_stringify(anonize2.getValue(survey + 8))
+        result = anonize2.Pointer_stringify(anonize2.getValue(survey + 8, '*'))
       }
-/* ask ABHI about this:
       anonize2._free(survey)
- */
+      anonize2._free(vid)
+      anonize2._free(vavk)
+      anonize2._free(vask)
       anonize2._free(user)
 
       if (!result) throw new Error('extendSurvey')
       return result
     },
 
-  // verifyMessage(request, registrarVK, surveyId, surveyVK) -> { data: '...', token: '...' }
   verifyMessage:
     function (request, registrarVK, surveyId, surveyVK) {
       var result
       var response = anonize2._malloc(16)
 
       if (emscripten.verifyMessage(request, registrarVK, surveyId, surveyVK, response)) {
-        result = { data: anonize2.Pointer_stringify(anonize2.getValue(response, "*")),
-                   token: anonize2.Pointer_stringify(anonize2.getValue(response + 4, "*"))
+        result = { data: anonize2.Pointer_stringify(anonize2.getValue(response, '*')),
+                   token: anonize2.Pointer_stringify(anonize2.getValue(response + 4, '*'))
                  }
       }
       anonize2._free(response)
@@ -109,7 +111,6 @@ var addon = {
       return result
     },
 
-  // makeCred(userId) -> preFlight
   makeCred:
     function (userId) {
       var result = emscripten.makeCred(userId)
@@ -118,7 +119,6 @@ var addon = {
       return result
     },
 
-  // registerUserMessage(preFlight, registrarVK) -> '...'
   registerUserMessage:
     function (preFlight, registrarVK) {
       var result = emscripten.registerUserMessage(preFlight, registrarVK)
@@ -127,7 +127,6 @@ var addon = {
       return result
     },
 
-  // registerUserFinal(userId, response, preFlight, registrarVK) -> masterUserToken
   registerUserFinal:
     function (userId, response, preFlight, registrarVK) {
       var result = emscripten.registerUserFinal(userId, response, preFlight, registrarVK)
@@ -136,7 +135,6 @@ var addon = {
       return result
     },
 
-  // submitMessage(message, masterUserToken, registrarVK, userIdSignature, surveyId, surveyVK) -> '...'
   submitMessage:
     function (message, masterUserToken, registrarVK, userIdSignature, surveyId, surveyVK) {
       var result = emscripten.submitMessage (message, masterUserToken, registrarVK, userIdSignature, surveyId, surveyVK)
