@@ -2,6 +2,10 @@
   "name": "node-anonize2-relic-emscripten",
   "version": "0.1.3",
   "description": "Node bindings to anonize2, using the RELIC toolkit and Emscripten.",
+  "scripts": {
+    "install": "echo `pwd` && rm -f ../anonize2.js.mem && ln anonize2.js.mem ..",
+    "clean": "rm -f ../anonize2.js.mem"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/brave/node-anonize2-relic.git"
