@@ -3,6 +3,13 @@ Node bindings to the [anonize2](https://gitlab.com/abhvious/anonize2) library,
 using the [RELIC toolkit](https://github.com/relic-toolkit/relic)
 and [Emscripten](https://github.com/kripken/emscripten)
 
+The package will look for `anonize2.js.mem` in `__dirname` unless `__dirname` contains `"app.asar"`,
+in which case the directory 
+
+    ".../Contents/Resources/app.asar.unpacked/node_modules/node-anonize2-relic-emscripten/anonize2.js.mem"
+
+is consulted instead.
+
 ## Licensing
 This repository contains the [anonize2](https://gitlab.com/abhvious/anonize2) library,
 which is licensed under [Apache v2.0 License](https://gitlab.com/abhvious/anonize2/blob/master/LICENSE.txt).

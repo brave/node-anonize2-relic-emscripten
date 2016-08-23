@@ -1,15 +1,6 @@
 /* jshint asi: true */
 
-
-// anonize2.js is built optimized so uses a memory initializer file (.mem file).
-// In a NODE env, this is loaded from the current working directory.
-// Here we ensure that the current working directory is the same as
-// where ./anonize2.js exists temporarily so that it can find ./anonize2.js.mem.
-var lastWorkingDir = process.cwd()
-process.chdir(__dirname)
 var anonize2 = require('./anonize2.js')
-process.chdir(lastWorkingDir)
-
 var underscore = require('underscore')
 
 var init = anonize2.cwrap('initAnonize', '', '')
