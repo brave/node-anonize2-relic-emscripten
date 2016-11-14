@@ -1,6 +1,6 @@
 {
   "name": "node-anonize2-relic-emscripten",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Node bindings to anonize2, using the RELIC toolkit and Emscripten.",
   "scripts": {
   },
@@ -18,7 +18,7 @@
     "underscore": "1.8.3"
   },
   "engines": {
-    "node": "5.6.0",
+    "node": ">= 6.1.0",
     "npm": "3.6.0"
   }
 }
