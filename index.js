@@ -249,7 +249,7 @@ var Credential = function (userId, registrarVK) {
     throw new Error('invalid JSON: ' + s)
   }
 
-  this.parameters = underscore.pick(p, [ 'userId', 'registrarVK', 'masterUserToken' ])
+  this.parameters = underscore.pick(p, [ 'userId', 'registrarVK', 'masterUserToken', 'preFlight' ])
 }
 
 Credential.prototype.toJSON = function () {
