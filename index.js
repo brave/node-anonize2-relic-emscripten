@@ -268,12 +268,13 @@ Credential.prototype.finalize = function (response) {
                                                             this.parameters.registrarVK)
   delete(this.parameters.preFlight)
 
-  return this
+  return JSON.stringify(this)
 }
 
 Credential.prototype.submit = function (survey, message) {
   if (!this.parameters.masterUserToken) throw new Error('masterUserToken missing for credential')
 
+  if (typeof survey === 'string') survey = new Surveyor(survey)
   if (typeof message === 'undefined') message = {}
   if (typeof message !== 'string') message = JSON.stringify(message)
 
