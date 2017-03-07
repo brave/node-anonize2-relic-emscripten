@@ -1,4 +1,4 @@
-/* jshint asi: true */
+/* jshint asi: true, node: true, laxbreak: true, laxcomma: true, undef: true, unused: true */
 
 var anonize2 = require('./anonize2.js')
 var underscore = require('underscore')
