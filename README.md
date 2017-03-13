@@ -37,3 +37,21 @@ This package uses the `anonize2.js` and `anonize2.js.mem` files produced by the
 [anonize2 build area](https://gitlab.com/abhvious/anonize2/builds),
 which is then used by as an add-on for node.js,
 it is believed that this package fully complies with the RELIC toolkit's licensing requirements.
+
+## Making the emscripten version
+
+* Download and unzip the Relic toolkit
+
+* Download and unzip the anonize2 library
+
+* On the Mac:
+
+  * `brew install emscripten cmake`
+
+  * Edit `~/.emscripten` to set
+
+        LLVM_ROOT = '/Users/mrose/homebrew/Cellar/emscripten/1.37.1/libexec/llvm/bin'
+
+  * Install a JDK
+
+* Run `cmake.sh`
