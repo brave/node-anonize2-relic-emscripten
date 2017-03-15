@@ -14,7 +14,6 @@ cmake ../relic -G "Unix Makefiles"  \
     -DCOLOR=OFF -DSEED=UDEV -DWITH="BN;DV;FP;FPX;EP;EPX;PP;MD" \
     -DBN_PRECI=256 -DBN_MAGNI=DOUBLE 
 make
-exit
 
 emcc -O2 -DNOMAIN -DRELIC_LIBRARY -I../src -I./include -I../relic/include ../anon.cpp -o anonize2.bc
 emcc -O2 ../sha2.cpp -o sha2.bc
