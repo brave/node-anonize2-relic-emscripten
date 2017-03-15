@@ -1,5 +1,5 @@
 # node-anonize2-relic-emscripten
-Node bindings to the [anonize2](https://gitlab.com/abhvious/anonize2) library,
+Javascript bindings to the [anonize2](https://gitlab.com/abhvious/anonize2) library,
 using the [RELIC toolkit](https://github.com/relic-toolkit/relic)
 and [Emscripten](https://github.com/kripken/emscripten)
 
@@ -39,10 +39,6 @@ which is then used by as an add-on for node.js,
 it is believed that this package fully complies with the RELIC toolkit's licensing requirements.
 
 ## Making the emscripten version
-
-* Download and unzip the Relic toolkit
-
-* Download and unzip the anonize2 library
 
 * On the Mac:
 
