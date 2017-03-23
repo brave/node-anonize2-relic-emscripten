@@ -1,6 +1,6 @@
 /* jshint asi: true, node: true, laxbreak: true, laxcomma: true, undef: true, unused: true */
 
-var anonize2 = require('./anonize2.js')
+var anonize2 = require('./anonize2-worker.js')
 var underscore = require('underscore')
 
 var init = anonize2.cwrap('initAnonize', '', '')
