@@ -6,6 +6,8 @@ rm -rf $BUILD
 mkdir  $BUILD
 cd     $BUILD
 
+rm -rf $HOME/.emscripten_cache
+
 cmake ../relic -G "Unix Makefiles"  \
     -DCMAKE_TOOLCHAIN_FILE="`brew --prefix`/Cellar/emscripten/1.37.1/libexec/cmake/Modules/Platform/Emscripten.cmake" \
     -DCHECK=OFF -DDEBUG=OFF -DVERBS=ON \
