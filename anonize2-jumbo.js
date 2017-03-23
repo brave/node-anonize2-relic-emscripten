@@ -93,6 +93,9 @@ if (ENVIRONMENT_IS_NODE) {
     } else if (typeof arguments != "undefined") {
         Module["arguments"] = arguments
     }
+    if (typeof module !== "undefined") {
+        module["exports"] = Module
+    }
 } else if (ENVIRONMENT_IS_WEB || ENVIRONMENT_IS_WORKER) {
     Module["read"] = function read(url) {
         var xhr = new XMLHttpRequest;
