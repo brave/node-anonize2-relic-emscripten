@@ -1,4 +1,7 @@
-var Module;
+var Module = {
+  ENVIRONMENT : 'SHELL'
+}
+
 if (!Module) Module = (typeof Module !== "undefined" ? Module : null) || {};
 var moduleOverrides = {};
 for (var key in Module) {
